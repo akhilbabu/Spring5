@@ -1,5 +1,6 @@
 package guru.springframework.spring5Webapp.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Book {
@@ -17,15 +19,24 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	public Book( String title, String isbn, publisher publisher) {
+		super();
+		this.title = title;
+		this.isbn = isbn;
+		this.publisher = publisher;
+	}
+
 	@Column
 	private String title;
 	@Column
 	private String isbn;
-	@Column
-	private String publisher;
+	
+	
+	@OneToOne()
+	private publisher publisher;
 
 	@ManyToMany()
-	private List<Author> authors;
+	private List<Author> authors=new ArrayList<>();
 	
 	public long getId() {
 		return id;
@@ -51,11 +62,11 @@ public class Book {
 		this.isbn = isbn;
 	}
 
-	public String getPublisher() {
+	public publisher getPublisher() {
 		return publisher;
 	}
 
-	public void setPublisher(String publisher) {
+	public void setPublisher(publisher publisher) {
 		this.publisher = publisher;
 	}
 

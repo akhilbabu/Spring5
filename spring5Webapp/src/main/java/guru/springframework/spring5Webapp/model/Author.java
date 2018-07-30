@@ -3,6 +3,7 @@
  */
 package guru.springframework.spring5Webapp.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -27,7 +28,7 @@ public class Author {
 	private String lastName;
 	
 	@ManyToMany(mappedBy="authors")
-	private List<Book> books;
+	private List<Book> books=new ArrayList<>();;
 
 	public long getId() {
 		return id;
@@ -47,6 +48,12 @@ public class Author {
 
 	public String getLastName() {
 		return lastName;
+	}
+
+	public Author( String firstname, String lastName) {
+		super();
+		this.firstname = firstname;
+		this.lastName = lastName;
 	}
 
 	public void setLastName(String lastName) {
